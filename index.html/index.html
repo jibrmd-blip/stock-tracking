@@ -4,39 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stock Market Tracker</title>
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <header>
     <h1>📊 Stock Market Tracker</h1>
-    <p>Track stocks like a pro</p>
+    <p>Track your favorite stocks in real-time</p>
   </header>
 
-  <main>
-    <section class="card">
+  <main class="container">
+    <!-- Input Card -->
+    <section class="card input-card">
       <h2>Track a Stock</h2>
-
-      <input
-        type="text"
-        id="symbol"
-        placeholder="Enter stock symbol (AAPL, TSLA)"
-      />
-
+      <input type="text" id="symbol" placeholder="Enter stock symbol (AAPL, TSLA)" />
       <button id="trackBtn">Track</button>
+    </section>
 
-      <div id="result" class="result"></div>
+    <!-- Result Card -->
+    <section class="card result-card">
+      <h2>Stock Details</h2>
+      <div id="result" class="result">
+        Enter a symbol to see details
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>Built with GitHub Pages</p>
+    <p>Built with Alpha Vantage API & GitHub Pages</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
