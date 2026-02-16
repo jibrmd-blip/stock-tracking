@@ -1,21 +1,13 @@
-/* Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Body & Font */
 body {
   font-family: 'Inter', Arial, sans-serif;
   background: linear-gradient(135deg, #0f172a, #1e293b);
   color: #e5e7eb;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
 
-/* Header & Footer */
 header, footer {
   text-align: center;
   padding: 20px;
@@ -29,7 +21,6 @@ footer {
   color: #94a3b8;
 }
 
-/* Main Container */
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -38,7 +29,6 @@ footer {
   padding: 40px 20px;
 }
 
-/* Card Styles */
 .card {
   background: #1e293b;
   border-radius: 16px;
@@ -48,11 +38,10 @@ footer {
   flex: 1 1 300px;
 }
 
-/* Input Card */
 .input-card input {
   width: 100%;
   padding: 12px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border-radius: 10px;
   border: none;
   font-size: 15px;
@@ -74,38 +63,45 @@ footer {
   background: #16a34a;
 }
 
-/* Result Card */
-.result-card h2 {
+.dashboard-card h2 {
   margin-bottom: 15px;
   color: #22c55e;
 }
 
-.result {
-  padding: 15px;
+.stock-card {
   background: #0f172a;
   border-radius: 10px;
-  min-height: 100px;
-  line-height: 1.6;
+  padding: 15px;
+  margin-bottom: 15px;
 }
 
-.result h3 {
-  margin-bottom: 10px;
+.stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stock-header h3 {
+  margin: 0;
   color: #22c55e;
 }
 
-.result span {
+.price-up {
+  color: #22c55e;
   font-weight: bold;
 }
 
-/* Price up/down colors */
-.price-up {
-  color: #22c55e;
-}
 .price-down {
   color: #ef4444;
+  font-weight: bold;
 }
 
-/* Responsive */
+canvas {
+  margin-top: 10px;
+  background: #020617;
+  border-radius: 10px;
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
