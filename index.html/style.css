@@ -14,7 +14,6 @@ body {
   min-height: 100vh;
 }
 
-/* Header & Footer */
 header, footer {
   background: #020617;
   text-align: center;
@@ -28,7 +27,6 @@ footer {
   margin-top: auto;
 }
 
-/* Main container */
 .container {
   display: flex;
   flex: 1;
@@ -36,7 +34,6 @@ footer {
   padding: 20px;
 }
 
-/* Sidebar */
 .sidebar {
   width: 280px;
   background: #1e293b;
@@ -76,13 +73,13 @@ footer {
 #trackedList li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 6px 10px;
   border-radius: 6px;
   background: #0f172a;
   margin-bottom: 5px;
 }
 
-/* Dashboard */
 .dashboard {
   flex: 1;
   display: flex;
@@ -95,14 +92,35 @@ footer {
   background: #1e293b;
   border-radius: 16px;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-.chart-card h3 {
-  margin-bottom: 10px;
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.chart-header h3 {
+  margin: 0;
   color: #22c55e;
 }
 
-/* Responsive */
+.current-price {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.price-up {
+  color: #22c55e;
+}
+
+.price-down {
+  color: #ef4444;
+}
+
 @media (max-width: 900px) {
   .container {
     flex-direction: column;
@@ -112,3 +130,4 @@ footer {
     margin-bottom: 20px;
   }
 }
+
