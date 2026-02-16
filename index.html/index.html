@@ -3,39 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stock Market Tracker</title>
+  <title>Advanced Stock Dashboard</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
-    <h1>📊 Stock Market Tracker</h1>
-    <p>Track your favorite stocks in real-time</p>
+    <h1>📊 Advanced Stock Dashboard</h1>
+    <p>Track multiple stocks with live updates and charts</p>
   </header>
 
   <main class="container">
-    <!-- Input Card -->
+    <!-- Input Section -->
     <section class="card input-card">
-      <h2>Track a Stock</h2>
+      <h2>Add a Stock</h2>
       <input type="text" id="symbol" placeholder="Enter stock symbol (AAPL, TSLA)" />
-      <button id="trackBtn">Track</button>
+      <button id="trackBtn">Add Stock</button>
+      <small>Max 5 stocks at a time</small>
     </section>
 
-    <!-- Result Card -->
-    <section class="card result-card">
-      <h2>Stock Details</h2>
-      <div id="result" class="result">
-        Enter a symbol to see details
+    <!-- Dashboard Section -->
+    <section class="card dashboard-card">
+      <h2>Tracked Stocks</h2>
+      <div id="stocksContainer">
+        <p>Enter a stock symbol to start tracking.</p>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Built with Alpha Vantage API & GitHub Pages</p>
+    <p>Built with Alpha Vantage API & Chart.js | GitHub Pages</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
