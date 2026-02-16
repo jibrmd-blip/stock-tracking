@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const API_KEY = "4IKRM7M5Z8X7CL05";
+  const API_KEY = "4IKRM7M5Z8X7CL05"; // Alpha Vantage
   const trackBtn = document.getElementById("trackBtn");
   const symbolInput = document.getElementById("symbol");
   const trackedList = document.getElementById("trackedList");
   const chartsContainer = document.getElementById("chartsContainer");
 
   let trackedStocks = [];
-  let chartObjects = {}; // Store chart instances
+  let chartObjects = {}; // Store chart instances and price labels
 
-  // Add stock button
+  // Add stock
   trackBtn.addEventListener("click", () => {
     const symbol = symbolInput.value.trim().toUpperCase();
     if (!symbol) return;
-    if (trackedStocks.includes(symbol)) return alert("Already tracking this stock!");
+    if (trackedStocks.includes(symbol)) return alert("Already tracking!");
     if (trackedStocks.length >= 5) return alert("Max 5 stocks.");
 
     trackedStocks.push(symbol);
@@ -22,20 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchStockData(symbol);
   });
 
-  // Update sidebar list with remove & refresh button
   function updateTrackedList() {
     trackedList.innerHTML = "";
     trackedStocks.forEach(sym => {
       const li = document.createElement("li");
       li.textContent = sym;
-
-      const refreshBtn = document.createElement("button");
-      refreshBtn.textContent = "⟳";
-      refreshBtn.title = "Refresh data";
-      refreshBtn.style.background = "transparent";
-      refreshBtn.style.border = "none";
-      refreshBtn.style.cursor = "pointer";
-      refreshBtn.onclick = () => fetchStockData(sym);
 
       const removeBtn = document.createElement("button");
       removeBtn.textContent = "❌";
@@ -45,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
       removeBtn.style.cursor = "pointer";
       removeBtn.onclick = () => removeStock(sym);
 
-      li.appendChild(refreshBtn);
       li.appendChild(removeBtn);
       trackedList.appendChild(li);
     });
@@ -63,19 +53,27 @@ document.addEventListener("DOMContentLoaded", () => {
     trackedStocks.forEach(symbol => createChartCard(symbol));
   }
 
-  // Create chart card
+  // Create chart card with live price
   function createChartCard(symbol) {
     const card = document.createElement("div");
     card.classList.add("chart-card");
     card.id = `card-${symbol}`;
-    card.innerHTML = `<h3>${symbol}</h3><div id="chart-${symbol}" style="height:300px;"></div>`;
+    card.innerHTML = `
+      <div class="chart-header">
+        <h3>${symbol}</h3>
+        <span id="price-${symbol}" class="current-price">Loading...</span>
+      </div>
+      <div id="chart-${symbol}" style="height:300px;"></div>
+    `;
     chartsContainer.appendChild(card);
   }
 
-  // Fetch stock data & update chart
+  // Fetch stock data & update chart and live price
   async function fetchStockData(symbol) {
     try {
-      const response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=15min&apikey=${API_KEY}`);
+      const response = await fetch(
+        `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=15min&apikey=${API_KEY}`
+      );
       const data = await response.json();
       const series = data["Time Series (15min)"];
       if (!series) throw new Error("Stock data not found");
@@ -87,6 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const c = parseFloat(series[time]["4. close"]);
         return { time: new Date(time).getTime() / 1000, open: o, high: h, low: l, close: c };
       }).reverse();
+
+      const currentPrice = candles[candles.length - 1].close;
+      const previousPrice = candles[candles.length - 2]?.close || currentPrice;
+      const priceElem = document.getElementById(`price-${symbol}`);
+      priceElem.textContent = `$${currentPrice.toFixed(2)}`;
+      priceElem.className = currentPrice >= previousPrice ? "current-price price-up" : "current-price price-down";
 
       // Create chart if doesn't exist
       if (!chartObjects[symbol]) {
@@ -112,14 +116,16 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         chartObjects[symbol].candleSeries.setData(candles);
       }
-
     } catch (err) {
-      console.error(`Error fetching data for ${symbol}:`, err);
+      console.error(`Error fetching ${symbol}:`, err);
+      const priceElem = document.getElementById(`price-${symbol}`);
+      if (priceElem) priceElem.textContent = "Error";
     }
   }
 
-  // Auto-refresh every 60 seconds
+  // Auto-refresh every 60s
   setInterval(() => {
     trackedStocks.forEach(symbol => fetchStockData(symbol));
   }, 60000);
 });
+
