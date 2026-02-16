@@ -11,7 +11,7 @@
 <body>
 
   <header>
-    <h1>📊 Stock Market Tracker</h1>
+    <h1> Stock Market Tracker</h1>
     <p>A simple market tracking website</p>
   </header>
 
@@ -39,3 +39,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
