@@ -3,44 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Stock Dashboard</title>
+  <title>Professional Stock Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Lightweight Charts library -->
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
-    <h1>📊 Advanced Stock Dashboard</h1>
-    <p>Track multiple stocks with live updates and charts</p>
+    <h1>📈 Professional Stock Dashboard</h1>
+    <p>Track real-time stock prices with candlestick charts</p>
   </header>
 
   <main class="container">
-    <!-- Input Section -->
-    <section class="card input-card">
-      <h2>Add a Stock</h2>
-      <input type="text" id="symbol" placeholder="Enter stock symbol (AAPL, TSLA)" />
+    <!-- Sidebar for input -->
+    <aside class="sidebar">
+      <h2>Add Stock</h2>
+      <input type="text" id="symbol" placeholder="Enter symbol (AAPL, TSLA)" />
       <button id="trackBtn">Add Stock</button>
       <small>Max 5 stocks at a time</small>
-    </section>
+      <ul id="trackedList"></ul>
+    </aside>
 
-    <!-- Dashboard Section -->
-    <section class="card dashboard-card">
-      <h2>Tracked Stocks</h2>
-      <div id="stocksContainer">
-        <p>Enter a stock symbol to start tracking.</p>
+    <!-- Dashboard area -->
+    <section class="dashboard">
+      <div id="chartsContainer">
+        <p>Add a stock to start tracking.</p>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Built with Alpha Vantage API & Chart.js | GitHub Pages</p>
+    <p>Built with Alpha Vantage API & Lightweight Charts | GitHub Pages</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
