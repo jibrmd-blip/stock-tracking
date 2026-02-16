@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Professional Stock Dashboard</title>
+  <title>Pro Stock Dashboard</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Lightweight Charts library -->
+  <!-- Lightweight Charts -->
   <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 
   <!-- CSS -->
@@ -16,21 +16,21 @@
 </head>
 <body>
   <header>
-    <h1>📈 Professional Stock Dashboard</h1>
-    <p>Track real-time stock prices with candlestick charts</p>
+    <h1>📈 Pro Stock Dashboard</h1>
+    <p>Track live stocks with candlestick charts</p>
   </header>
 
   <main class="container">
-    <!-- Sidebar for input -->
+    <!-- Sidebar -->
     <aside class="sidebar">
       <h2>Add Stock</h2>
       <input type="text" id="symbol" placeholder="Enter symbol (AAPL, TSLA)" />
       <button id="trackBtn">Add Stock</button>
-      <small>Max 5 stocks at a time</small>
+      <small>Max 5 stocks</small>
       <ul id="trackedList"></ul>
     </aside>
 
-    <!-- Dashboard area -->
+    <!-- Dashboard -->
     <section class="dashboard">
       <div id="chartsContainer">
         <p>Add a stock to start tracking.</p>
@@ -45,4 +45,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
